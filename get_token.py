@@ -11,8 +11,8 @@ def main():
     login = get_userinput("Email Address")
     password = getpass()
     devicename = get_userinput("Device Name")
-    OTP = get_userinput("OTP")
-    token = get_token(login, password, OTP, deviceid, devicename, pin)
+    otp = get_userinput("OTP")
+    token = get_token(login, password, otp, deviceid, devicename, pin)
     print(f"The PIN number was: {pin}")
     print(f"Your Token is: {token}")
     print(f"Your DeviceId is: {deviceid}")
@@ -38,11 +38,11 @@ def request_api(method, api, headers, payload):
     return response
 
 
-def get_token(login, password, OTP, deviceid, devicename, pin):
+def get_token(login, password, otp, deviceid, devicename, pin):
     payload = f'login={login}&password={password}'
     headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'X-OTP': OTP,
+    'X-otp': otp,
     'X-Device-Id': deviceid,
     }
     response = request_api("POST", "/jwtDevice", headers, payload)
