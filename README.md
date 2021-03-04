@@ -1,6 +1,8 @@
 # coinmetro-api-tools
 Tools which can be used with the Coinmetro API which are documented here: https://documenter.getpostman.com/view/3653795/SVfWN6KS
 
+To findout more about Coinmetro and to sign up, please feel free to use my referal link: https://coinmetro.com?ref=eyean
+
 ## get_token.py
 Create a long lived token to be used on future API calls.
 
