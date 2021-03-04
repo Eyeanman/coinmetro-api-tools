@@ -42,7 +42,7 @@ def get_token(login, password, otp, deviceid, devicename, pin):
     payload = f'login={login}&password={password}'
     headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'X-otp': otp,
+    'X-OTP': otp,
     'X-Device-Id': deviceid,
     }
     response = request_api("POST", "/jwtDevice", headers, payload)
