@@ -3,8 +3,6 @@ import uuid
 import random
 from getpass import getpass
 
-random_id = ' '.join([str(random.randint(0, 999)).zfill(3) for _ in range(2)])
-
 apiRoot = "https://api.coinmetro.com"
 
 def main():
