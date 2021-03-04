@@ -67,6 +67,7 @@ def update_deviceinfo(token, deviceid, devicename, pin):
         return response
     else:
         print(f"Error: {response['message']}")
+        print(f"You will need to Decline/Remove this device from your account before trying again")
         raise SystemExit(0)
     return (response)
 
