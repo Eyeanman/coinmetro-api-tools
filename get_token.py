@@ -1,6 +1,7 @@
 import requests
 import uuid
 import random
+from getpass import getpass
 
 random_id = ' '.join([str(random.randint(0, 999)).zfill(3) for _ in range(2)])
 
@@ -10,7 +11,7 @@ def main():
     pin = generate_pin()
     deviceid = generate_deviceid()
     login = get_userinput("Email Address")
-    password = get_userinput("Password")
+    password = getpass()
     devicename = get_userinput("Device Name")
     OTP = get_userinput("OTP")
     token = get_token(login, password, OTP, deviceid, devicename, pin)
