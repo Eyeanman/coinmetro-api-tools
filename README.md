@@ -15,4 +15,4 @@ Create a long lived token to be used on future API calls.
 * Check your Email or goto your Coinmetro Settings to authorise app (make sure to compare the PIN number provided as they should match)
 
 ### TODO
-* API available to auto autherise device however was not working, appears to be newly listed so may not yet be active
+* API available to auto authorise device however was not working, appears to be newly listed so may not yet be active
