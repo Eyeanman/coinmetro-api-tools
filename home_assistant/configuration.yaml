@@ -1,0 +1,175 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+  - platform: rest
+    scan_interval: 60
+    name: coinmetro
+    resource: https://api.coinmetro.com/users/balances
+    headers:
+      Authorization: !secret coinmetro_token
+      X-Device-ID: !secret coinmetro_deviceid
+    json_attributes:
+      - BTC
+      - DNA
+      - ETH
+      - EUR
+      - GBP
+      - PRQ
+      - PRQB
+      - USD
+      - XCM
+      - GENE2YR
+      - TGBL2YR
+      - CMBD2YR
+      - IGN€
+      - TOTAL
+      - REF
+    value_template: "OK"
+  - platform: template
+    sensors:
+      coinmetro_xcm_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["XCM"]["XCM"] }}'
+        unit_of_measurement: "XCM"
+      coinmetro_xcm_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["XCM"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_xcm_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["XCM"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_xcm_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["XCM"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_btc_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["BTC"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_btc_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["BTC"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_btc_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["BTC"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_dna_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["DNA"]["DNA"] }}'
+        unit_of_measurement: "DNA"
+      coinmetro_dna_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["DNA"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_dna_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["DNA"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_dna_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["DNA"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_eth_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["ETH"]["ETH"] }}'
+        unit_of_measurement: "ETH"
+      coinmetro_eth_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["ETH"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_eth_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["ETH"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_eth_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["ETH"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_prq_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQ"]["PRQ"] }}'
+        unit_of_measurement: "PRQ"
+      coinmetro_prq_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQ"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_prq_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQ"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_prq_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQ"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_prqb_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQB"]["PRQB"] }}'
+        unit_of_measurement: "PRQB"
+      coinmetro_prqb_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQB"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_prqb_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQB"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_prqb_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["PRQB"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_bonds_encrypgen_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["GENE2YR"]["GENE2YR"] }}'
+      coinmetro_bonds_encrypgen_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["GENE2YR"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_bonds_encrypgen_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["GENE2YR"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_bonds_encrypgen_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["GENE2YR"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_bonds_coinmetro_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["CMBD2YR"]["CMBD2YR"] }}'
+      coinmetro_bonds_coinmetro_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["CMBD2YR"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_bonds_coinmetro_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["CMBD2YR"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_bonds_coinmetro_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["CMBD2YR"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_account_value_gbp:
+        value_template: '{{ states.sensor.coinmetro.attributes["TOTAL"]["GBP"] | round (2) }}'
+        unit_of_measurement: "£"
+      coinmetro_account_value_eur:
+        value_template: '{{ states.sensor.coinmetro.attributes["TOTAL"]["EUR"] | round (2) }}'
+        unit_of_measurement: "€"
+      coinmetro_account_value_btc:
+        value_template: '{{ states.sensor.coinmetro.attributes["TOTAL"]["BTC"] }}'
+        unit_of_measurement: "BTC"
+      coinmetro_eur_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["EUR"]["EUR"] }}'
+        unit_of_measurement: "€"
+      coinmetro_gbp_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["GBP"]["GBP"] }}'
+        unit_of_measurement: "£"
+      coinmetro_usd_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["USD"]["USD"] }}'
+        unit_of_measurement: "$"
+      coinmetro_ign_balance:
+        value_template: '{{ states.sensor.coinmetro.attributes["IGN€"]["IGN€"] | round (2) }}'
+        unit_of_measurement: "IGN€"
+
+
+
+sensor:
+  - platform: rest
+    name: crypto_prices
+    resource: https://api.coingecko.com/api/v3/simple/price?ids=ethereum%2Ccoinmetro%2Cencrypgen&vs_currencies=gbp%2Ceur
+    scan_interval: 60
+    json_attributes:
+      - ethereum
+      - coinmetro
+      - encrypgen
+    value_template: "OK"
+  - platform: template
+    sensors:
+      ethereum_eur_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["ethereum"]["eur"] }}'
+        unit_of_measurement: "€"
+      coinmetro_eur_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["coinmetro"]["eur"] }}'
+        unit_of_measurement: "€"
+      encrypgen_eur_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["encrypgen"]["eur"] }}'
+        unit_of_measurement: "€"
+      ethereum_gbp_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["ethereum"]["gbp"] }}'
+        unit_of_measurement: "£"
+      coinmetro_gbp_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["coinmetro"]["gbp"] }}'
+        unit_of_measurement: "£"
+      encrypgen_gbp_price:
+        value_template: '{{ states.sensor.crypto_prices.attributes["encrypgen"]["gbp"] }}'
+        unit_of_measurement: "£"
