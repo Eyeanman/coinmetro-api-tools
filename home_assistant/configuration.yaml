@@ -2,6 +2,7 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+sensor:
   - platform: rest
     scan_interval: 60
     name: coinmetro
@@ -143,7 +144,7 @@ default_config:
 
 
 
-sensor:
+
   - platform: rest
     name: crypto_prices
     resource: https://api.coingecko.com/api/v3/simple/price?ids=ethereum%2Ccoinmetro%2Cencrypgen&vs_currencies=gbp%2Ceur
